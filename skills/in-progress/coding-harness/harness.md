@@ -21,6 +21,7 @@ Read this file at the start of a session that will edit this repo. Refresh anyth
 
 - **Tools.** {{TOOLS}}
 - **Validation.** {{VALIDATION}}
+- **Lint.** {{LINT}}
 - **Path sandbox.** This repo.
 - **Ask first.** {{ASK_FIRST}}
 

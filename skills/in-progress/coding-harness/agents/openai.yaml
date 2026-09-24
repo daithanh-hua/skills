@@ -1,5 +1,5 @@
 interface:
   display_name: "Coding Harness"
-  short_description: "Harness the open project, including how done is checked"
+  short_description: "Harness the open project, including lint and how done is checked"
 policy:
   allow_implicit_invocation: false
