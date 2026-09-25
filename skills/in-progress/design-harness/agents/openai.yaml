@@ -1,0 +1,5 @@
+interface:
+  display_name: "Design Harness"
+  short_description: "Set up the open project's frontend design stack"
+policy:
+  allow_implicit_invocation: false
