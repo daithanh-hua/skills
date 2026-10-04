@@ -1,6 +1,6 @@
 ---
 name: design-harness
-description: "Set up the frontend design stack in the project you have open: which design tool, whether agents read DESIGN.md, and whether open briefs use the frontend-design skill."
+description: "Set up the frontend design stack in the project you have open. Google Stitch also installs its skills, MCP server, .stitch template, and the screen-to-code pipeline."
 disable-model-invocation: true
 ---
 
@@ -15,7 +15,7 @@ This is a prompt-driven skill, not a deterministic script. Explore, grill one ch
 Three layers, and this skill picks how they stack:
 
 - A **design tool** is where humans make the look (Figma, Google Stitch, Penpot).
-- A **design skill** steers an open brief. That skill is Anthropic's `frontend-design`. This skill does not contain it.
+- A **design skill** steers an open brief. For Google Stitch that suite is `google-labs-code/stitch-skills`. For every other tool it is Anthropic's `frontend-design`. Each suite is installed from its own repo.
 - **DESIGN.md** is Google's plain-text design system (YAML tokens plus prose). Tokens are the values. Prose says how to apply them. Spec: `google-labs-code/design.md`. The format is alpha.
 
 ## Process
@@ -25,8 +25,8 @@ Three layers, and this skill picks how they stack:
 Read the open repo:
 
 - `CLAUDE.md` and `AGENTS.md`. A symlink pair is one file. A `.claude/` directory. An existing `## Design harness` section.
-- `DESIGN.md` at the repo root, and `docs/agents/design-harness.md`.
-- A Figma, Stitch, or Penpot URL in the README or the docs.
+- `DESIGN.md` at the repo root, `.stitch/`, and `docs/agents/design-harness.md`.
+- A Figma, Stitch, or Penpot URL in the README or the docs. A stitch server in `.cursor/mcp.json` or `.mcp.json`.
 - Where tokens already live: a Tailwind theme, CSS variables, or a tokens file. Name the path. Leave the values unread beyond enough to know the file exists.
 
 **Done when:** each item is present or absent, and a present item cites a path or URL.
@@ -45,15 +45,15 @@ Otherwise ask:
 
 Yes writes `CLAUDE.md`. Any other answer writes `AGENTS.md`. One file only. When that file already exists, edit it. A symlink pair is edited once.
 
-**Section B: Design tool.** Skip when the repo already names one tool and no second tool. Otherwise ask:
+**Section B: Design tool.** Skip the question when the repo already names one tool and no second tool. Otherwise ask:
 
 > Figma, Google Stitch, Penpot, or none? (recommended: **Figma** when people share product UI. Recommend **Google Stitch** when the work is prompt-to-mock and you want a DESIGN.md export. Recommend **Penpot** when files must be open-source or self-hosted. Recommend **none** when code in this repo is the only design surface.)
+
+When the tool is Google Stitch, follow [stitch.md](./stitch.md) from here through its done step. That file replaces sections C, D, and E and the confirm step.
 
 **Section C: What agents read.** Skip when `DESIGN.md` already exists. Otherwise ask:
 
 > Record the identity in DESIGN.md? (recommended: **yes** when agents will implement UI here. Recommend **no** when the design tool is the only source of truth.)
-
-Yes, and the tool is Google Stitch: ask whether a Stitch export already exists. A file they have is copied to `DESIGN.md`. No file means a stub with an Overview only, and tokens wait for the export.
 
 Yes, and the tool is Figma or Penpot: humans edit the tool. Agents read `DESIGN.md`. On conflict, `DESIGN.md` wins for code until someone updates it from the tool.
 
@@ -73,7 +73,7 @@ No: the harness says agents follow `DESIGN.md` or the tool, and do not invent a 
 
 > Code in this repo, a mock in the design tool, or mock then code? (recommended: **code** when this is an application repo. Recommend **a mock** when this work is exploration. Recommend **mock then code** when designers and this repo both ship.)
 
-**Until done** is not a question. Copy it from [harness.md](./harness.md) on every write, including a re-run whose copy is missing or shortened.
+**Until done** is not a question. Copy it from [harness.md](./harness.md) on every write other than Google Stitch, including a re-run whose copy is missing or shortened.
 
 ### 3. Confirm
 
@@ -93,7 +93,7 @@ Read [docs/agents/design-harness.md](docs/agents/design-harness.md) before chang
 
 Write `docs/agents/design-harness.md` by filling [harness.md](./harness.md). Delete a `{{...}}` line whose answer is empty. Copy **Until done** unchanged.
 
-When Section C creates `DESIGN.md`, write it at the repo root. A stub is an Overview that names the tool and says tokens are not set yet. Do not invent hex values, typefaces, or a palette. A Stitch export the user supplied is that file, unchanged.
+When Section C creates `DESIGN.md`, write it at the repo root. A stub is an Overview that names the tool and says tokens are not set yet. Do not invent hex values, typefaces, or a palette.
 
 **Done when:** the pointer exists, the stack lines are filled, and **Until done** matches the template.
 
