@@ -2,7 +2,7 @@
 
 Plan, then Design, then Build & Test, then Deploy, then Operate & Maintain. You keep the decision. The agent produces the artifact.
 
-For a phase, the user runs that phase's door with the context. The door picks one skill. For Any phase and Outside this lifecycle, run a line only when it matches. Tell the user to run the skills phrased that way. Call the Skill tool for every other skill named here. When a named skill is missing from this agent, tell the user the name and continue.
+For a phase, the user runs that phase's door with the context. The door picks one skill. For Any phase and Outside this lifecycle, run a line only when it matches. Tell the user to run the skills phrased that way. Call the Skill tool for every other skill named here. When a named skill on one of those lines is missing from this agent, tell the user the name and skip that line.
 
 When no line matches, tell the user to run `ask-matt`.
 
@@ -43,12 +43,12 @@ The user runs `operate` with the context. After the build, the user runs `retro`
 ## Any phase
 
 - A message did not land: tell the user to run `wait-what`.
-- Editing a skill, `AGENTS.md`, or `CLAUDE.md`: call the Skill tool with `writing-for-agents`.
 - The transcript must travel to a new directory, a colleague, or a new harness: tell the user to run `handoff`.
 - Hand this conversation to a fresh background agent now: tell the user to run `claude-handoff`.
 
 ## Outside this lifecycle
 
+- Editing a skill, `AGENTS.md`, or `CLAUDE.md`: call the Skill tool with `writing-for-agents`.
 - Learning a concept over sessions: tell the user to run `teach`.
 - An article, as beats: tell the user to run `writing-beats`.
 - Mining fragments for an article: tell the user to run `writing-fragments`.
