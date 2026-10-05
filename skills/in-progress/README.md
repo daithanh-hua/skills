@@ -14,5 +14,10 @@ npx skills@latest add mattpocock/skills --skill=<name>
 - **[writing-shape](./writing-shape/SKILL.md)**: Take a markdown file of raw material and shape it into an article paragraph by paragraph, arguing format choices at each step.
 - **[claude-handoff](./claude-handoff/SKILL.md)**: Hand the current conversation off to a fresh background agent that picks up the work immediately, seeded with a handoff summary via `claude --bg`. User-invoked.
 - **[setup-ts-deep-modules](./setup-ts-deep-modules/SKILL.md)**: Wire dependency-cruiser into a TypeScript repo so each package is a deep module: implementation hidden in subfolders, reachable only through its entry-point files, tests exercising it through those. User-invoked.
-- **[coding-harness](./coding-harness/SKILL.md)**: Set up a project's coding harness: six blocks, git strategy, how a request enters, four gates that must be shown before a task is called done, and lint when the repo has none. User-invoked.
+- **[coding-harness](./coding-harness/SKILL.md)**: Set up a project's coding harness: six blocks, git strategy, how a request enters, four gates that must be shown before a task is called done, lint when the repo has none, and a phase door for Plan, Design, Build & Test, Deploy, then Operate & Maintain. You keep the decision. The agent produces the artifact. User-invoked.
+- **[plan](./plan/SKILL.md)**: Read the context you pass and pick one planning skill. User-invoked.
+- **[design](./design/SKILL.md)**: Read the context you pass and pick one design skill. User-invoked.
+- **[build](./build/SKILL.md)**: Read the context you pass and pick one build skill. User-invoked.
+- **[deploy](./deploy/SKILL.md)**: Read the context you pass and pick one deploy skill. User-invoked.
+- **[operate](./operate/SKILL.md)**: Read the context you pass and pick one operate skill. User-invoked.
 - **[design-harness](./design-harness/SKILL.md)**: Set up a project's frontend design stack. Google Stitch also installs its skills, MCP server, `.stitch` template, and the screen-to-code pipeline. User-invoked.

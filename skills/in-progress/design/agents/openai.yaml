@@ -1,0 +1,5 @@
+interface:
+  display_name: "Design"
+  short_description: "Pick the design skill for the context you pass"
+policy:
+  allow_implicit_invocation: false

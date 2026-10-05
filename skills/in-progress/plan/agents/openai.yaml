@@ -1,0 +1,5 @@
+interface:
+  display_name: "Plan"
+  short_description: "Pick the plan skill for the context you pass"
+policy:
+  allow_implicit_invocation: false

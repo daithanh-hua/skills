@@ -1,0 +1,5 @@
+interface:
+  display_name: "Operate"
+  short_description: "Pick the operate skill for the context you pass"
+policy:
+  allow_implicit_invocation: false

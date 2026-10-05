@@ -90,6 +90,13 @@ Off the main flow entirely.
 - **`/teach`**: learn a concept over multiple sessions, using the current directory as a stateful workspace.
 - **`/writing-for-agents`** is the reference for writing documents agents consume: skills, AGENTS.md, pointed-at docs.
 
+## Phase doors
+
+In progress, installed on their own, not in the plugin. You pass the context. The door reads it and picks one skill in that phase. When the pick is a skill only you can start, the door names that one skill and stops.
+
+- **`/plan`**: an idea, a ticket, a list of tickets, a screen, or another application.
+- **`/design`**, **`/build`**, **`/deploy`**, **`/operate`**: the same, for that phase.
+
 ## Precondition
 
 **`/setup-matt-pocock-skills`**: run before your first engineering flow to configure the issue tracker, triage labels, and doc layout the other skills assume. Custom issue trackers also work.

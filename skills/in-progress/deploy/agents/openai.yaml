@@ -1,0 +1,5 @@
+interface:
+  display_name: "Deploy"
+  short_description: "Pick the deploy skill for the context you pass"
+policy:
+  allow_implicit_invocation: false

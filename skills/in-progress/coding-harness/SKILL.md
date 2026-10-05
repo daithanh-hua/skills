@@ -10,37 +10,39 @@ Scaffold the coding harness for the repository you have open. Install this skill
 
 The skills library that ships this skill is not a project repo. If `skills/in-progress/coding-harness/SKILL.md` is in the working directory, stop and tell the user to open the project.
 
-This is a prompt-driven skill, not a deterministic script. Explore, present what you found, confirm with the user, then write.
+Explore, present what you found, confirm with the user, then write.
 
 A coding agent is a model in a tools loop. The harness validates a structured tool call, asks for approval when a gate says so, executes, clips and bounds the result, and appends it to session state. The loop is observe, inspect, choose, act.
 
 ## What this file records
 
-Fill [harness.md](./harness.md) from the open repo. A block an installed skill already owns is done by that skill, in this repo. Otherwise write it yourself. The file you leave still states the rule.
+Fill [harness.md](./harness.md) from the open repo. You write every section. The file you leave still states the rule. An installed skill is a pointer in that section, or a step you tell the user to run.
 
-1. **Live repo context.** Git state, layout, project docs. Refresh git with a command. Terminology or an ADR, and `domain-modeling` is installed: call the Skill tool with `domain-modeling`. Issue tracker missing, and `setup-matt-pocock-skills` is installed: tell the user to run it.
+1. **Live repo context.** Git state, layout, project docs. Refresh git with a command. Record paths to a glossary or ADRs when they exist. Issue tracker missing: tell the user to run `setup-matt-pocock-skills`.
 2. **Prompt shape and cache reuse.** Stable prefix plus changing session state. When `writing-for-agents` is installed, call the Skill tool with `writing-for-agents` before editing the prefix.
 3. **Structured tools, validation, and permissions.** The tools you can call, the validation command, the lint command, this repo as the sandbox, and what needs a human yes.
 4. **Context reduction and output management.** Clip verbose output, drop a duplicate file read, compress older transcript into working memory.
 5. **Transcripts, memory, and resumption.** The transcript stays in the harness session log. Working memory is a file in this repo. When `handoff` is installed, tell the user to run it for a transcript that must travel.
-6. **Delegation and bounded subagents.** One bound: read-only, a depth, or a task scope. Installed spawners stay inside it. Do not spawn them during setup.
+6. **Delegation and bounded subagents.** One bound: read-only, a depth, or a task scope. Installed spawners stay inside it. Setup writes the bound. Spawning waits until a later session.
 7. **Git.** GitHub flow or Gitflow: where a branch starts, where the pull request lands, what deploys.
-8. **Workflow.** Where a request starts, how the agent starts, and the four done gates. Copy the **Until done** block from [harness.md](./harness.md) unchanged.
+8. **Workflow.** Where a request starts, the default entry, and the four done gates. The user enters a phase through `plan`, `design`, `build`, `deploy`, or `operate`. [phases.md](./phases.md) points at those doors. Any phase, and the skills outside the lifecycle, stay listed there. Copy **Until done** from [harness.md](./harness.md) unchanged. Copy [phases.md](./phases.md) unchanged.
 
 ## Process
+
+When `docs/agents/harness.md` already has sections 1–8, **Until done** still has four gates, and `docs/agents/phases.md` matches [phases.md](./phases.md), read [rescore.md](./rescore.md) and stop. The steps below are the first run, or a run whose **Until done** or phases file was shortened.
 
 ### 1. Explore
 
 Read the open repo:
 
 - `CLAUDE.md` and `AGENTS.md`. A symlink pair is one file. A `.claude/` directory. An existing `## Coding harness` section.
-- `CONTEXT.md`, `docs/adr/`, `docs/agents/harness.md`, `docs/agents/decisions.md`, `docs/agents/issue-tracker.md`
+- `CONTEXT.md`, `docs/adr/`, `docs/agents/harness.md`, `docs/agents/phases.md`, `docs/agents/decisions.md`, `docs/agents/issue-tracker.md`
 - Top-level layout
 - `git status -sb`, `git remote -v`, and `git branch -a`. A long-lived `develop` branch. Version tags. Any sentence that already names GitHub flow or Gitflow.
 - The validation command, in this order: the CI workflow's check, then a `check` / `ci` / `test` / `validate` script, then `pytest`, `cargo test`, `./mvnw -B verify`, or `go test ./...`
 - Whether a linter already runs: a config plus a script, task, or CI step that invokes it. Read [lint.md](./lint.md) only when that pair is absent.
 
-**Done when:** blocks 1–8 each have a status and cite a path or command in this repo, and lint is either a command in this repo or absent.
+**Done when:** sections 1, 2, 3, 5, and 7 each cite a path or command in this repo, or say the repo has none. Sections 4 and 6 are the template rules. Section 8 stays unset until the questions. Lint is a command in this repo or absent.
 
 ### 2. Present findings and ask
 
@@ -81,21 +83,23 @@ Gitflow: a branch off `develop`, the pull request lands on `develop`, a version 
 
 They may say both. An issue is usable only after `docs/agents/issue-tracker.md` exists. When they choose an issue and that file is missing, tell them to run `setup-matt-pocock-skills`.
 
-**Section G: How the agent starts.** Skip when the harness doc already says so. Ask:
+**Section G: Default entry.** Skip when the harness doc already names one. Ask:
 
-> Start with grill-with-docs, then implement when it fits one session? (recommended: **yes**)
+> Start with grill-with-docs, then implement, when the request fits one session? (recommended: **yes**)
 
-Yes records this path. A ticket that already exists: the user runs `implement`. A chat request that fits one session: the user runs `grill-with-docs`, then `implement`. A request that does not fit one session: the user runs `wayfinder`, then `to-spec`, then `to-tickets`. A question that needs a runnable answer: call the Skill tool with `prototype`, and the user runs `handoff` out and back. A runbook, only when the user asks for steps only they can perform: call the Skill tool with `wizard`. `to-tickets` is the checklist.
+Yes writes: `Default entry: grill-with-docs, then implement, for a request that fits one session.`
 
-No means ask which one entry is the default, and record that entry.
+No: ask which one skill is the default entry, and write `Default entry: <that skill>.`
 
-**Until done** is not a question. It is copied from [harness.md](./harness.md) on every write, including a re-run whose copy is missing or shortened.
+The full map is [phases.md](./phases.md). This section records one default entry.
+
+**Until done** is not a question. Copy it from [harness.md](./harness.md) on every write, including a re-run whose copy is missing or shortened. Copy [phases.md](./phases.md) the same way.
 
 ### 3. Confirm and edit
 
-Show a draft of the `## Coding harness` block, `docs/agents/harness.md`, the lint files [lint.md](./lint.md) will add, and `docs/agents/decisions.md` when Section D creates it. Let the user edit the draft before writing.
+Show a draft of the `## Coding harness` block, `docs/agents/harness.md`, and `docs/agents/phases.md`. When Section C said yes, include the lint files from [lint.md](./lint.md). When Section D creates it, include `docs/agents/decisions.md`. Let the user edit the draft before writing. Edits to the phases draft are discarded: that file is copied from the template.
 
-**Done when:** the user has accepted the draft or edited it. The four done gates are still present.
+**Done when:** the user has accepted the draft or edited it. **Until done** in the draft matches [harness.md](./harness.md). The phases draft matches [phases.md](./phases.md).
 
 ### 4. Write
 
@@ -104,25 +108,25 @@ Edit the one instructions file from Section A. When a `## Coding harness` block 
 ```markdown
 ## Coding harness
 
-The loop is observe, inspect, choose, act. Read [docs/agents/harness.md](docs/agents/harness.md) at the start of a session that will edit this repo. A task is done only when this session shows all four: the request on disk, a test that went red then green, Standards and Spec from `code-review`, and the validation command exiting 0.
+The loop is observe, inspect, choose, act. Read [docs/agents/harness.md](docs/agents/harness.md) at the start of a session that will edit this repo. Which skill to run is in [docs/agents/phases.md](docs/agents/phases.md). A task is done only when **Until done** in the harness doc is met, from this session.
 ```
 
-Write `docs/agents/harness.md` by filling [harness.md](./harness.md). Delete a `{{...}}` line whose answer is empty. A validation command you did not find stays `missing`. Fill `{{LINT}}` from Section C. Copy **Until done** unchanged.
+Write `docs/agents/harness.md` by filling [harness.md](./harness.md). Delete a `{{...}}` line whose answer is empty. A validation command you did not find stays `missing`. Fill `{{LINT}}` from Section C. Copy **Until done** unchanged. Copy [phases.md](./phases.md) to `docs/agents/phases.md`, replacing whatever is there.
 
 When Section C said yes, write the lint files from [lint.md](./lint.md) before the harness doc. Leave existing violations unfixed.
 
 When Section D creates it, write `docs/agents/decisions.md` with a heading and the line "Decisions that must survive compaction are written here verbatim."
 
-**Done when:** the pointer exists, blocks 1–8 are filled, and **Until done** matches the template.
+**Done when:** the pointer exists, sections 1–8 are filled, **Until done** matches the template, and `docs/agents/phases.md` matches [phases.md](./phases.md).
 
-### 5. Prove validation
+### 5. Record validation
 
-Run the validation command when its last-observed line is missing, or the command changed. When the line already records a pass for this same command, leave it. When Section C added a lint command that the validation command does not already run, run the lint command too.
+Run the validation command when its last-observed line is missing, or the command changed. When the line already records a pass for this same command, leave it. When Section C added a lint command that the validation command does not already run, run the lint command too. When no command exists, write `missing`.
 
-**Done when:** the line says pass, fail, or `missing`, from an observed run. `missing` ends the skill: the harness is not in place until a command exists.
+**Done when:** the validation line says pass, fail, or `missing`, from this run or from a pass already recorded for the same command.
 
 ### 6. Done
 
-Tell the user the harness is in this repo, which command you ran, and that they can edit `docs/agents/harness.md`. Re-run to fill a missing section. Do not re-ask a section the doc already answers.
+Tell the user which files you wrote, which command you ran, and the word on the validation line. They can edit `docs/agents/harness.md`. Ask again only for a section the doc does not answer.
 
-When blocks 1–8 and **Until done** are all present, score the session instead: context rot, lossy compaction, stateless session. Repair working memory. Leave the doc.
+When the validation line is `missing`, say a task cannot be called done until a command is recorded.

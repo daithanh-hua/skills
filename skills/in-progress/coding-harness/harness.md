@@ -43,14 +43,16 @@ A subagent inherits this file and one task. It does not inherit the parent trans
 
 {{SPAWNERS}}
 
-## Git
+## 7. Git
 
 - **Strategy.** {{GIT_STRATEGY}}
 - **Start from.** {{GIT_START}}
 - **Pull request lands on.** {{GIT_TARGET}}
 - **Deploy.** {{GIT_DEPLOY}}
 
-## Workflow
+## 8. Workflow
+
+Plan, then Design, then Build & Test, then Deploy, then Operate & Maintain. You keep the decision. The agent produces the artifact. Read [phases.md](phases.md) and run a skill only when its line matches this request.
 
 - **A request starts.** {{REQUEST_START}}
 - **The agent starts.** {{AGENT_START}}
