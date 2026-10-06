@@ -1,31 +1,37 @@
 ---
 name: plan
-description: "Pick one planning skill from the context you pass in."
-argument-hint: "A ticket, a list of tickets, an idea, a screen, or another application"
+description: "Open the plan phase on one request or one existing issue, then name the first undone step of that phase's order."
+argument-hint: "A request, or one existing issue"
 disable-model-invocation: true
 ---
 
 # Plan
 
+Before editing this door, read [../coding-harness/GUARDRAILS.md](../coding-harness/GUARDRAILS.md). Invariants 4, 5, and 6 bind this file.
+
 You decide the constraints and the scope. The agent drafts the spec, the tickets, and the edge cases.
 
-The context is what the user passed with this skill: a sentence, a ticket, a list of tickets, a path, a screen, or another application. Read it. When they passed nothing, ask once what it is.
+The order is the Plan section of [../coding-harness/phases.md](../coding-harness/phases.md). Walk it. Name the first line whose work is not done. The user types a skill whose line says so. Call the Skill tool for `research` and `grilling`. This door does not start a user-invoked skill.
 
-When `docs/agents/harness.md` has a Plan gate and this change has no issue, spec, or working-memory paragraph yet, write that plan where **A request starts** says before you pick a line. The reply names the artifact.
+A recurring loop in the user's life or work: tell them to type `/loop-me` and stop.
 
-Pick the first match. One line. Name that line in one sentence.
+Entry is one of two. Both leave one issue.
 
-A line that says to call the Skill tool: call it with the context. A line that says the user runs a skill: tell them that one name and stop. The user types a user-invoked skill. This door does not start it.
+- A request from the user, and no issue for it yet: create one issue where **A request starts** says in `docs/agents/harness.md`. The body is the request. The reply names the issue.
+- One issue someone already created: that issue is the entry. Read it. Do not create a second one.
 
-1. The context is a ticket or a list of tickets already written: tell the user to run `build`.
-2. The context is a screen or another application, and the question is how it should look or behave: tell the user to run `design`.
-3. There is no working directory: tell the user to run `grill-me`.
-4. The context is a recurring loop in the user's life or work: tell the user to run `loop-me`.
-5. The way to the destination is not visible, or the effort is bigger than one session: tell the user to run `wayfinder`.
-6. A person other than the user holds the answer: tell the user to run `to-questionnaire`.
-7. The context is source material to read, and the user is not the one who must decide: call the Skill tool with `research`.
-8. The context is a discussion already settled, and they want it written down: tell the user to run `to-spec`.
-9. They asked for the interview with no wrapper: call the Skill tool with `grilling`.
-10. Otherwise, in a repo: tell the user to run `grill-with-docs`.
+When they passed neither, ask once which it is.
 
-**Done when:** the plan is on disk when the harness has a Plan gate, and one line was picked. Every Skill tool call on that line was made. Every skill that line says the user runs was named to them.
+1. `/to-questionnaire`, when a person other than the user holds the answer. Skip when the user holds it.
+2. `research`, when the answer is in source material and the user is not the one who must decide. Skip otherwise.
+3. Sharpen, the first line whose skip is false. One line only:
+   - `/grilling`, when they asked for the interview with no wrapper. Skip otherwise. This line replaces the other sharpeners.
+   - `/wayfinder`, when the way is not visible or the effort is bigger than one session. Skip when one session can hold it. A cleared map skips `/grill-with-docs`. The next step is `/to-spec`.
+   - `/grill-me`, when there is no working directory. Skip when a repo is open.
+   - `/grill-with-docs`, while the issue is still a raw request in a repo. Skip once this session has run it, the issue is already a spec, or a wayfinder map has cleared.
+4. `/to-spec`, once the constraints are settled and the issue is not a spec yet. A spec states the problem, the solution, and the user stories.
+5. `/to-tickets`, when that spec is more than one slice and the tickets are not published yet. One slice skips this line.
+
+When the list is done, tell the user to type `/build`. A screen that still needs a look: tell the user to type `/design` first. `/build` is the slash command. Cursor's Build button is not that door.
+
+**Done when:** one issue is named, and the next skill in the order was named. When the order is finished, `/build` or `/design` was named.

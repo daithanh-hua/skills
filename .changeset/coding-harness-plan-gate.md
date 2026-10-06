@@ -2,4 +2,4 @@
 "mattpocock-skills": patch
 ---
 
-`coding-harness` now writes a plan gate into the harness doc and the instructions-file pointer. A change writes that plan where a request starts (an issue, a spec, or working memory) and names the artifact in the reply. A plan that exists only in chat does not open the gate. Code starts after you accept it. A later run copies the gate again. The `plan` and `build` doors read it before they pick a skill. `ask-matt` names that wait.
+`coding-harness` now writes a plan gate into the harness doc and the instructions-file pointer. Plan opens on one issue: your request creates it, or an issue someone already created is the entry. The plan skills then run in order: `grill-with-docs`, `to-spec`, `to-tickets`. A plan that exists only in chat does not open the gate. Code starts after you accept the issue. `/build` sends you back to `/plan` until then. `ask-matt` names that wait. `/plan` and `/build` are slash commands: Cursor Plan mode and the Cursor Build button do not run those doors.

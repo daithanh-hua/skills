@@ -94,10 +94,15 @@ Off the main flow entirely.
 
 In progress, installed on their own, not in the plugin. You pass the context. The door reads it and picks one skill in that phase. When the pick is a skill only you can start, the door names that one skill and stops.
 
-- **`/plan`**: an idea, a ticket, a list of tickets, a screen, or another application.
-- **`/design`**, **`/build`**, **`/deploy`**, **`/operate`**: the same, for that phase.
+Each door names the first undone step of that phase's order.
 
-When the harness doc has a Plan gate and this change has no accepted plan, `/plan` and `/build` write that plan where a request starts and wait. They pick a skill after you accept it.
+- **`/plan`**: one request from you, or one issue someone already opened. It creates the issue when you did not. The spine is `/grill-with-docs`, `/to-spec`, `/to-tickets`. `/to-questionnaire`, `research`, and `/wayfinder` sit before that spine and run only when their skip is false.
+- **`/design`**: `domain-modeling`, `codebase-design`, `/setup-ts-deep-modules`, `prototype`, `/design-harness`, then the screen.
+- **`/build`**: after you accept the issue: `diagnosing-bugs`, then the write (`/implement-spec`, `/implement`, or `tdd`), then `code-review`, then the validation command.
+- **`/deploy`**: `pr`, then `wizard`, then you sign off. No skill promotes to production.
+- **`/operate`**: `/triage` or `diagnosing-bugs` when that is the entry. After a build: `/retro`, `/improve-codebase-architecture`, then the hooks you asked for.
+
+When the harness doc has a Plan gate and this change has no accepted issue, `/build` tells you to type `/plan` and waits. Code starts after you accept that issue.
 
 ## Precondition
 

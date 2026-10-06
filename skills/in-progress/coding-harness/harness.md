@@ -54,15 +54,19 @@ A subagent inherits this file and one task. It does not inherit the parent trans
 
 Plan, then Design, then Build & Test, then Deploy, then Operate & Maintain. You keep the decision. The agent produces the artifact. Read [phases.md](phases.md) and run a skill only when its line matches this request.
 
+### IDE words
+
+`/plan` and `/build` are slash commands. Cursor Plan mode and the Cursor Build button do not run them. The difference is in [phases.md](phases.md) under **IDE words**.
+
 ### Plan gate
 
-A request to change this repo opens with a plan. Write that plan in this turn where **A request starts** says: the issue, the spec, or a paragraph in working memory. A plan that exists only in chat does not open the gate.
+Plan opens on one issue. A request from the user, and no issue for it yet: create one issue where **A request starts** says. One issue someone already created: that issue is the entry. Do not create a second one. A plan that exists only in chat does not open the gate.
 
-The reply names that artifact. It also names the outcome, the seam (files or modules), and how the change will be checked. Code stays for a later turn.
+The reply names the issue. The skills that follow it are the Plan order in [phases.md](phases.md). Code stays for a later turn.
 
-Code, edits, and commits start after the user accepts that plan (`go`, `do it`, `accepted`). Acceptance covers that plan only.
+Code, edits, and commits start after the user accepts that issue (`go`, `do it`, `accepted`). Acceptance covers that issue only.
 
-A question that does not change the repo is answered in that reply. A plan already on disk and accepted in this session is the go-ahead for that change.
+A question that does not change the repo is answered in that reply. An issue already accepted in this session is the go-ahead for that change.
 
 - **A request starts.** {{REQUEST_START}}
 - **The agent starts.** {{AGENT_START}}
