@@ -13,7 +13,7 @@ You set the quality bar and you approve the change. The agent writes the code, t
 
 The order is the Build & Test section of [../coding-harness/phases.md](../coding-harness/phases.md). The context is what the user passed with this skill. Read it. When they passed nothing, ask once what it is.
 
-When `docs/agents/harness.md` has a Plan gate and this change has no accepted issue, tell the user to type `/plan` with the request or the issue. Stop. `/plan` is the slash command. Cursor Plan mode is not that door.
+When `docs/agents/harness.md` has a Plan gate and this change has no accepted issue, tell the user to type `/plan` with the request or the issue. Stop. Acceptance is the latest user message: `go`, `do it`, or `accepted`. A missing plan skill is not that acceptance. `/plan` is the slash command. Cursor Plan mode is not that door.
 
 A screen that still needs a look: tell the user to type `/design` and stop.
 

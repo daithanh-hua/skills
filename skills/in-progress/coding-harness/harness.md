@@ -64,7 +64,7 @@ Plan opens on one issue. A request from the user, and no issue for it yet: creat
 
 The reply names the issue. The skills that follow it are the Plan order in [phases.md](phases.md). Code stays for a later turn.
 
-Code, edits, and commits start after the user accepts that issue (`go`, `do it`, `accepted`). Acceptance covers that issue only.
+Code, edits, and commits start after the user accepts that issue. Acceptance is the latest user message, and it is exactly `go`, `do it`, or `accepted`. Acceptance covers that issue only. A missing skill on the Plan order is named and the turn stops. That line is not skipped.
 
 A question that does not change the repo is answered in that reply. An issue already accepted in this session is the go-ahead for that change.
 

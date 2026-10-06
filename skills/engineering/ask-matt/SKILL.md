@@ -96,7 +96,7 @@ In progress, installed on their own, not in the plugin. You pass the context. Th
 
 Each door names the first undone step of that phase's order.
 
-- **`/plan`**: one request from you, or one issue someone already opened. It creates the issue when you did not. The spine is `/grill-with-docs`, `/to-spec`, `/to-tickets`. `/to-questionnaire`, `research`, and `/wayfinder` sit before that spine and run only when their skip is false.
+- **`/plan`**: one request from you, or one issue someone already opened. It creates the issue when you did not. The spine is `/grill-with-docs`, `/to-spec`, `/to-tickets`. `/to-questionnaire`, `research`, and `/wayfinder` sit before that spine and run only when their skip is false. A missing skill on that order is named and the turn stops. It is not skipped.
 - **`/design`**: `domain-modeling`, `codebase-design`, `/setup-ts-deep-modules`, `prototype`, `/design-harness`, then the screen.
 - **`/build`**: after you accept the issue: `diagnosing-bugs`, then the write (`/implement-spec`, `/implement`, or `tdd`), then `code-review`, then the validation command.
 - **`/deploy`**: `pr`, then `wizard`, then you sign off. No skill promotes to production.

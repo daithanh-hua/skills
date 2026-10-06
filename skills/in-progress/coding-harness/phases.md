@@ -2,7 +2,7 @@
 
 Plan, then Design, then Build & Test, then Deploy, then Operate & Maintain. You keep the decision. The agent produces the artifact.
 
-For a phase, the user types that phase's slash command with the context: `/plan`, `/design`, `/build`, `/deploy`, or `/operate`. The door names the first step in that phase's order whose work is not done. A step whose skip is true is done. For Any phase, Article, and Outside this lifecycle, run a line only when it matches. Tell the user to type a skill whose line says so. Call the Skill tool for every other skill named here. When a named skill is missing from this agent, tell the user the name and skip that line.
+For a phase, the user types that phase's slash command with the context: `/plan`, `/design`, `/build`, `/deploy`, or `/operate`. The door names the first step in that phase's order whose work is not done. A step whose skip is true is done. For Any phase, Article, and Outside this lifecycle, run a line only when it matches. Tell the user to type a skill whose line says so. Call the Skill tool for every other skill named here. Coding-harness setup links each named skill into the project's .cursor/skills directory when that skill is already on this machine. When a named skill is still missing, tell the user the name. On the Plan order, stop the turn. That line is not skipped, and the issue stays the only artifact. On any other order, skip that line.
 
 When no line matches, tell the user to type `/ask-matt`.
 
@@ -28,7 +28,7 @@ Entry is one of two. Both leave one issue. A plan that exists only in chat does 
 
 A recurring loop in your life or work is not this order. Type `/loop-me`.
 
-Then the skills run in this order. The user types `/plan` with the request or the issue. That skill names the first line whose work is not done yet. The spine is `grill-with-docs`, `to-spec`, `to-tickets`. The lines before the spine run only when their skip is false.
+Then the skills run in this order. The user types `/plan` with the request or the issue. That skill names the first line whose work is not done yet. The spine is `grill-with-docs`, `to-spec`, `to-tickets`. The lines before the spine run only when their skip is false. A missing skill in this list does not finish the list. Name it and stop. Code waits until the latest user message is `go`, `do it`, or `accepted`.
 
 1. `/to-questionnaire`, when a person other than you holds the answer. Skip when you hold it.
 2. `research`, when the answer is in source material and you are not the one who must decide. Skip otherwise. The file it writes feeds the next sharpening step.

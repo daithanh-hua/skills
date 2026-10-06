@@ -11,7 +11,7 @@ Before editing this door, read [../coding-harness/GUARDRAILS.md](../coding-harne
 
 You decide the constraints and the scope. The agent drafts the spec, the tickets, and the edge cases.
 
-The order is the Plan section of [../coding-harness/phases.md](../coding-harness/phases.md). Walk it. Name the first line whose work is not done. The user types a skill whose line says so. Call the Skill tool for `research` and `grilling`. This door does not start a user-invoked skill.
+The order is the Plan section of [../coding-harness/phases.md](../coding-harness/phases.md). Walk it. Name the first line whose work is not done. The user types a skill whose line says so. Call the Skill tool for `research` and `grilling`. This door does not start a user-invoked skill. A missing skill on this order is named and the turn stops. That line is not skipped, and it is not done.
 
 A recurring loop in the user's life or work: tell them to type `/loop-me` and stop.
 
