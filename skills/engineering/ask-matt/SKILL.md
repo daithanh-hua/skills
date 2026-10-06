@@ -97,6 +97,8 @@ In progress, installed on their own, not in the plugin. You pass the context. Th
 - **`/plan`**: an idea, a ticket, a list of tickets, a screen, or another application.
 - **`/design`**, **`/build`**, **`/deploy`**, **`/operate`**: the same, for that phase.
 
+When the harness doc has a Plan gate and this change has no accepted plan, `/plan` and `/build` write that plan where a request starts and wait. They pick a skill after you accept it.
+
 ## Precondition
 
 **`/setup-matt-pocock-skills`**: run before your first engineering flow to configure the issue tracker, triage labels, and doc layout the other skills assume. Custom issue trackers also work.

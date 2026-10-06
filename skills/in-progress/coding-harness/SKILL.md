@@ -1,6 +1,6 @@
 ---
 name: coding-harness
-description: "Set up Raschka's six-block coding harness in the project you have open, including its git strategy, how a request enters, the four gates that mean done, and a linter when the repo has none."
+description: "Set up Raschka's six-block coding harness in the project you have open, including its git strategy, how a request enters, the plan gate before code, the four gates that mean done, and a linter when the repo has none."
 disable-model-invocation: true
 ---
 
@@ -25,7 +25,7 @@ Fill [harness.md](./harness.md) from the open repo. You write every section. The
 5. **Transcripts, memory, and resumption.** The transcript stays in the harness session log. Working memory is a file in this repo. When `handoff` is installed, tell the user to run it for a transcript that must travel.
 6. **Delegation and bounded subagents.** One bound: read-only, a depth, or a task scope. Installed spawners stay inside it. Setup writes the bound. Spawning waits until a later session.
 7. **Git.** GitHub flow or Gitflow: where a branch starts, where the pull request lands, what deploys.
-8. **Workflow.** Where a request starts, the phase doors, and the four done gates. The user enters a phase through `plan`, `design`, `build`, `deploy`, or `operate`, plus the context. [phases.md](./phases.md) is the map those doors read. Any phase, and the skills outside the lifecycle, stay listed there. Copy **Until done** from [harness.md](./harness.md) unchanged. Copy [phases.md](./phases.md) unchanged.
+8. **Workflow.** Where a request starts, the phase doors, and the four done gates. The user enters a phase through `plan`, `design`, `build`, `deploy`, or `operate`, plus the context. [phases.md](./phases.md) is the map those doors read. Any phase, and the skills outside the lifecycle, stay listed there. Copy **Plan gate** and **Until done** from [harness.md](./harness.md) unchanged. Copy [phases.md](./phases.md) unchanged. The `build` door reads the plan gate before it picks a skill.
 
 ## Process
 
@@ -86,6 +86,8 @@ Write that sentence as **The agent starts.** The map is [phases.md](./phases.md)
 
 No: they name the doors to keep. The line lists those doors.
 
+**Plan gate** is not a question. Copy it from [harness.md](./harness.md) on every write, including a re-run whose copy is missing. It sits in section 8, above **A request starts.**
+
 **Until done** is not a question. Copy it from [harness.md](./harness.md) on every write, including a re-run whose copy is missing or shortened.
 
 **Done when:** the list shows A–G, each with **Last answer** or **Recommended**, and `docs/agents/phases.md` is already a copy of [phases.md](./phases.md).
@@ -97,10 +99,10 @@ Edit the one instructions file from Section A. When a `## Coding harness` block 
 ```markdown
 ## Coding harness
 
-The loop is observe, inspect, choose, act. Read [docs/agents/harness.md](docs/agents/harness.md) at the start of a session that will edit this repo. Which skill to run is in [docs/agents/phases.md](docs/agents/phases.md). A task is done only when **Until done** in the harness doc is met, from this session.
+The loop is observe, inspect, choose, act. A change opens with the plan gate in [docs/agents/harness.md](docs/agents/harness.md): write the plan where a request starts, name that artifact in the reply, and start code after the user accepts it. Read that file at the start of a session that will edit this repo. Which skill to run is in [docs/agents/phases.md](docs/agents/phases.md). A task is done only when **Until done** in the harness doc is met, from this session.
 ```
 
-Write `docs/agents/harness.md` by filling [harness.md](./harness.md). Delete a `{{...}}` line whose answer is empty. A validation command you did not find stays `missing`. Fill `{{LINT}}` from Section C. Fill **The agent starts.** from Section G. Copy **Until done** unchanged.
+Write `docs/agents/harness.md` by filling [harness.md](./harness.md). Delete a `{{...}}` line whose answer is empty. A validation command you did not find stays `missing`. Fill `{{LINT}}` from Section C. Fill **The agent starts.** from Section G. Copy **Plan gate** and **Until done** unchanged.
 
 When `docs/agents/harness.md` already exists, keep a line the template does not have if it names a path, a command, or a tool that is still in this repo. That covers a branch guard, a Stitch block, and a hook named in **Saying done**. Drop a kept line whose path or command is gone.
 
@@ -110,7 +112,7 @@ When Section C said yes, write the lint files from [lint.md](./lint.md) before t
 
 When Section D creates it, write `docs/agents/decisions.md` with a heading and the line "Decisions that must survive compaction are written here verbatim."
 
-**Done when:** the pointer exists, sections 1–8 are filled, **Until done** matches the template, and `docs/agents/phases.md` matches [phases.md](./phases.md).
+**Done when:** the pointer names the plan gate, sections 1–8 are filled, **Plan gate** and **Until done** match the template, and `docs/agents/phases.md` matches [phases.md](./phases.md).
 
 ### 4. Record validation
 

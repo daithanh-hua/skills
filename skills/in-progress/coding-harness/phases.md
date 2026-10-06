@@ -12,7 +12,7 @@ When no line matches, tell the user to run `ask-matt`.
 
 ## Plan
 
-You decide the constraints and the scope. The agent drafts the spec, the tickets, and the edge cases.
+You decide the constraints and the scope. The agent drafts the spec, the tickets, and the edge cases. Publish that artifact where a request starts. A plan that exists only in chat does not open the gate.
 
 The user runs `plan` with the context. That skill reads it and picks one plan skill.
 
@@ -24,7 +24,7 @@ A UI screen follows `docs/agents/design-harness.md` when that file exists. When 
 
 ## Build & Test
 
-You set the quality bar: the validation command and lint in the harness doc. You approve the change. The agent writes the code, the tests, and the fixes, and turns a red bar green. Done when **Until done** in the harness doc is met, all four, from this session.
+You set the quality bar: the validation command and lint in the harness doc. You approve the change. Build starts after the plan gate in the harness doc is accepted. The agent then writes the code, the tests, and the fixes, and turns a red bar green. Done when **Until done** in the harness doc is met, all four, from this session.
 
 The user runs `build` with the context. A list of tickets picks `implement-spec`.
 

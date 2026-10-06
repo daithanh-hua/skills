@@ -54,6 +54,16 @@ A subagent inherits this file and one task. It does not inherit the parent trans
 
 Plan, then Design, then Build & Test, then Deploy, then Operate & Maintain. You keep the decision. The agent produces the artifact. Read [phases.md](phases.md) and run a skill only when its line matches this request.
 
+### Plan gate
+
+A request to change this repo opens with a plan. Write that plan in this turn where **A request starts** says: the issue, the spec, or a paragraph in working memory. A plan that exists only in chat does not open the gate.
+
+The reply names that artifact. It also names the outcome, the seam (files or modules), and how the change will be checked. Code stays for a later turn.
+
+Code, edits, and commits start after the user accepts that plan (`go`, `do it`, `accepted`). Acceptance covers that plan only.
+
+A question that does not change the repo is answered in that reply. A plan already on disk and accepted in this session is the go-ahead for that change.
+
 - **A request starts.** {{REQUEST_START}}
 - **The agent starts.** {{AGENT_START}}
 - **Until done.** A task is done only when all four are true, from this session. A summary of an earlier turn does not count.

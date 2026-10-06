@@ -31,7 +31,7 @@ The word the skill gives you to think with is **flow**: a path *through* the ski
 - **Codebase health**, upkeep rather than feature work: [improve-codebase-architecture](https://aihero.dev/skills-improve-codebase-architecture) surveys the code for deepening opportunities, and each one it finds re-enters the main flow as an idea.
 - **Standalones**, off every flow, reached for on their own terms: the prototype, the questionnaire, the research run.
 - **A vocabulary layer underneath**, the two references the other skills pull in when the words rather than the process are the problem.
-- **Phase doors**, in progress. `/plan`, `/design`, `/build`, `/deploy`, and `/operate` each take the context you pass and pick one skill in that phase. When the pick is a skill only you can start, the door names it and stops.
+- **Phase doors**, in progress. `/plan`, `/design`, `/build`, `/deploy`, and `/operate` each take the context you pass and pick one skill in that phase. When the pick is a skill only you can start, the door names it and stops. When the harness has a plan gate and the change has no accepted plan, `/plan` and `/build` write that plan where a request starts and wait until you accept it.
 
 ## The phase boundary
 

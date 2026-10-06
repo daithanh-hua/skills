@@ -11,6 +11,8 @@ You decide the constraints and the scope. The agent drafts the spec, the tickets
 
 The context is what the user passed with this skill: a sentence, a ticket, a list of tickets, a path, a screen, or another application. Read it. When they passed nothing, ask once what it is.
 
+When `docs/agents/harness.md` has a Plan gate and this change has no issue, spec, or working-memory paragraph yet, write that plan where **A request starts** says before you pick a line. The reply names the artifact.
+
 Pick the first match. One line. Name that line in one sentence.
 
 A line that says to call the Skill tool: call it with the context. A line that says the user runs a skill: tell them that one name and stop. The user types a user-invoked skill. This door does not start it.
@@ -26,4 +28,4 @@ A line that says to call the Skill tool: call it with the context. A line that s
 9. They asked for the interview with no wrapper: call the Skill tool with `grilling`.
 10. Otherwise, in a repo: tell the user to run `grill-with-docs`.
 
-**Done when:** one line was picked. Every Skill tool call on that line was made. Every skill that line says the user runs was named to them.
+**Done when:** the plan is on disk when the harness has a Plan gate, and one line was picked. Every Skill tool call on that line was made. Every skill that line says the user runs was named to them.
